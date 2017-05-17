@@ -1,0 +1,68 @@
+
+server:
+  port: 7000
+
+spring:
+  jackson:
+    serialization-inclusion: non_null
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  jpa:
+    hibernate.ddl-auto: update
+    properties:
+      javax.persistence.sharedCache.mode: ALL
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: true
+      hibernate.cache.region.factory_class: net.yijubao.exchange.platform.service.impl.cache.hibernate.redis.RedisRegionFactory
+  redis:
+    host: 192.168.3.134
+    port: 6379
+  data:
+    mongodb:
+      host: 192.168.3.134
+      port: 27017
+      database: yijubao
+  datasource:
+    #platform: postgresql
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.3.134:5433/yijubao_platform
+    username: yijubao
+    password: yijubao.net@KjfbUkh981
+  cloud:
+    stream:
+      default.contentType: application/json
+      bindings:
+        house_status:
+          destination: topic.house.status
+          group: service
+      kafka:
+        binder:
+          brokers: loalhost:9093
+          zkNodes: loalhost
+
+ytx.sms:
+  base-url: https://app.cloopen.com:8883/2013-12-26
+  account-sid: 8a216da859204cc901592570eda7034d
+  sub-account-sid: 0a45a338fa6011e69eaa6c92bf2c165d
+  auth-token: 9600909d57804297b03b3a460312296b
+  app-id: 8a216da85a3c0c39015a5ae3d01e0d47
+  templates.identifying-code: 155715
+
+yijubao:
+  storage:
+    default:
+      endpoint: oss-cn-shanghai.aliyuncs.com
+      access-id: hRhFuUG42AFDYlSM
+      access-key: 3dwoTmHNaiHaxARIGchgOHXWh8vX5l
+      bucket: yijubao
+      policy:
+        expire-time: 60 * 5 #s
+        max-size: 1024 * 10 #k
+      callback:
+        url: yijubao.tunnel.qydev.com/api/storage/callback
+        host: yijubao.tunnel.qydev.com
+        body: '{"bucket":${bucket},"object":${object},"mimeType":${mimeType},"size":${size},"resourceId":"${resourceId}"}'
+        body-type: application/json
+    picture:
+      news.policy.base-dir: news
+      housing.policy.base-dir: housing
+      banner.policy.base-dir: banner

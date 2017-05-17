@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+target/
+*.ctxt
+.mtj.tmp/
+*.war
+*.ear
+hs_err_pid*
+.idea/
+*.iml
+*.versionsBackup

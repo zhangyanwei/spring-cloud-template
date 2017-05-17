@@ -1,0 +1,59 @@
+spring:
+  jackson:
+    serialization-inclusion: non_null
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  # for session
+  jpa:
+    hibernate.ddl-auto: update
+  redis:
+    host: 192.168.3.134
+    port: 6379
+  # for oauth2 api
+  datasource:
+    #platform: postgresql
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.3.134:5433/yijubao_platform
+    username: yijubao
+    password: yijubao.net@KjfbUkh981
+  freemarker:
+    checkTemplateLocation: false
+    template-loader-path: classpath:/templates/view
+    prefix: /
+    suffix: .ftl
+  cloud:
+    stream:
+      default.contentType: application/json
+      bindings:
+        house_status:
+          destination: topic.house.status
+          group: service
+      kafka:
+        binder:
+          brokers: loalhost:9093
+          zkNodes: loalhost
+
+wx:
+  base-url: https://api.weixin.qq.com/cgi-bin
+  token: token
+  client:
+    id: WECHAT
+    clientAuthenticationScheme: query
+    clientId: wx577c911fe9f480bf
+    clientSecret: d4624c36b6795d1d99dcf0547af5443d
+    accessTokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
+    userAuthorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
+    scope: snsapi_userinfo
+  definition:
+    id: unionid
+    nickname: nickname
+    avatar: headimgurl
+
+# feign.hystrix.enabled: false
+# hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 3000
+# hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 3000
+feign.hystrix.enabled: false
+hystrix.command.upload.execution.timeout.enabled: false
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
