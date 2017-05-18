@@ -5,6 +5,8 @@ import com.github.zhangyanwei.sct.model.entity.User.UserStatus;
 import com.github.zhangyanwei.sct.model.entity.User_;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +24,10 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
     Optional<User> findByNickname(String nickname);
 
     Optional<User> findByIdNumber(String idNumber);
+
+    @Modifying
+    @Query("update User u set u.status = ?1 where u.id in ?2")
+    void updateStatus(UserStatus status, Long... ids);
 
     class UserSpecs {
 

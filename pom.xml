@@ -16,6 +16,8 @@
         <module>model</module>
         <module>dao</module>
         <module>service</module>
+        <module>service-impl</module>
+        <module>oauth2-server</module>
     </modules>
 
     <!-- Inherit defaults from Spring Boot -->
@@ -47,6 +49,16 @@
             <dependency>
                 <groupId>com.github.zhangyanwei</groupId>
                 <artifactId>model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zhangyanwei</groupId>
+                <artifactId>dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zhangyanwei</groupId>
+                <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
