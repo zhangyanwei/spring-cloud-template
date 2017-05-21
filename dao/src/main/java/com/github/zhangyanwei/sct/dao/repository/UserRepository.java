@@ -23,8 +23,6 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
 
     Optional<User> findByNickname(String nickname);
 
-    Optional<User> findByIdNumber(String idNumber);
-
     @Modifying
     @Query("update User u set u.status = ?1 where u.id in ?2")
     void updateStatus(UserStatus status, Long... ids);

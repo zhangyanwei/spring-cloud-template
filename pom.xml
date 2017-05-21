@@ -18,6 +18,7 @@
         <module>service</module>
         <module>service-impl</module>
         <module>oauth2-server</module>
+        <module>web-api</module>
     </modules>
 
     <!-- Inherit defaults from Spring Boot -->

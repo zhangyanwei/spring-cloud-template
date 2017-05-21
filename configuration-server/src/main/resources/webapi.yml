@@ -12,25 +12,9 @@ spring:
   datasource:
     #platform: postgresql
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.3.134:5433/yijubao_platform
+    url: jdbc:postgresql://192.168.3.134:5433/sct
     username: yijubao
     password: yijubao.net@KjfbUkh981
-  freemarker:
-    checkTemplateLocation: false
-    template-loader-path: classpath:/templates/view
-    prefix: /
-    suffix: .ftl
-  cloud:
-    stream:
-      default.contentType: application/json
-      bindings:
-        house_status:
-          destination: topic.house.status
-          group: service
-      kafka:
-        binder:
-          brokers: loalhost:9093
-          zkNodes: loalhost
 
 wx:
   base-url: https://api.weixin.qq.com/cgi-bin
